@@ -184,7 +184,7 @@ SELECT *
 FROM Person.Person
 
 SELECT *
-FROM Person.EmailAddress
+FROM Person.EmailAddress;
 
 SELECT Person.Person.BusinessEntityID, Person.Person.FirstName, Person.Person.LastName, Person.EmailAddress.EmailAddress
 FROM Person.Person
@@ -194,7 +194,7 @@ ORDER BY Person.Person.BusinessEntityID;
 
 -- ListPrice, ProductName, SubcategoryName
 SELECT *
-FROM Production.Product;
+FROM Production.Product
 
 SELECT *
 FROM Production.ProductSubcategory;
@@ -204,3 +204,19 @@ FROM Production.Product
 INNER JOIN Production.ProductSubcategory ON Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID;
 
 --BusinessEntityId, Name, PhoneNumberTypeId, PhoneNumber
+SELECT * FROM Person.PersonPhone
+
+SELECT * FROM Person.PhoneNumberType;
+
+SELECT Person.PersonPhone.BusinessEntityID, Person.PersonPhone.PhoneNumberTypeID, Person.PersonPhone.PhoneNumber, Person.PhoneNumberType.Name
+FROM Person.PersonPhone 
+JOIN Person.PhoneNumberType ON Person.PersonPhone.PhoneNumberTypeID = Person.PhoneNumberType.PhoneNumberTypeID 
+
+-- AddressId, City, StateProvinceID, Name(state)
+SELECT * FROM Person.Address
+
+SELECT * FROM Person.StateProvince;
+
+SELECT Person.Address.AddressID, Person.Address.City, Person.StateProvince.StateProvinceID, Person.StateProvince.Name
+FROM Person.Address
+INNER JOIN Person.StateProvince ON Person.StateProvince.StateProvinceID = Person.Address.StateProvinceID
