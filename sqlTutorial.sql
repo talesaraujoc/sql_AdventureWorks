@@ -12,7 +12,7 @@ FROM HumanResources.Employee
 WHERE MaritalStatus='M' and SalariedFlag = '1' ;
 
 
--- Localizando endereço de e-mail do employee Peter Krebs
+-- Localizando endereï¿½o de e-mail do employee Peter Krebs
 SELECT * FROM Person.Person
 WHERE FirstName='Peter' and LastName='Krebs';
 
@@ -26,11 +26,11 @@ on Person.Person.BusinessEntityID = Person.EmailAddress.BusinessEntityID
 WHERE FirstName = 'Peter' and LastName = 'Krebs';
 
 
--- Quantos produtos estão cadastrados na base de dados?
+-- Quantos produtos estï¿½o cadastrados na base de dados?
 SELECT count(DISTINCT ProductNumber) FROM Production.Product;
 
 
--- Quantos tamanhos de produtos estão cadastrados na base de dados?
+-- Quantos tamanhos de produtos estï¿½o cadastrados na base de dados?
 SELECT count(DISTINCT Size) FROM Production.Product;
 
 SELECT Size, count(Size) from Production.Product
@@ -44,7 +44,7 @@ FROM Production.Product
 ORDER BY ListPrice desc;
 
 
--- Obter o nome e número dos produtos os quais possuem ProductID entre 1~4
+-- Obter o nome e nï¿½mero dos produtos os quais possuem ProductID entre 1~4
 SELECT ProductID, Name 
 FROM Production.Product
 WHERE ProductID BETWEEN '1' and '4';
@@ -62,18 +62,18 @@ FROM Person.Person
 WHERE FirstName LIKE ('P%');
 
 
--- Em quantas cidades únicas os clientes estão cadastrados:
+-- Em quantas cidades ï¿½nicas os clientes estï¿½o cadastrados:
 SELECT COUNT(DISTINCT City) 
 FROM Person.Address;
 
 
--- Quais as cidades únicas que temos cadastradas no sistema:
+-- Quais as cidades ï¿½nicas que temos cadastradas no sistema:
 SELECT DISTINCT City 
 FROM Person.Address
 ORDER BY City asc;
 
 
--- Quantos produtos vermelhos possuem preço entre 500~1000:
+-- Quantos produtos vermelhos possuem preï¿½o entre 500~1000:
 SELECT COUNT(DISTINCT ProductID) 
 FROM Production.Product
 WHERE Color = 'Red' and ListPrice BETWEEN '500' and '1000';
@@ -92,7 +92,7 @@ GROUP BY ProductID
 order by Qtde_vendida desc;
 
 
--- Média de preço para produtos prata
+-- Mï¿½dia de preï¿½o para produtos prata
 SELECT Color, AVG(ListPrice) 
 FROM Production.Product
 WHERE Color = 'Silver' and ListPrice > 0
@@ -106,7 +106,7 @@ GROUP BY MiddleName
 order by Count_MiddleName
 
 
--- Em média, qual é a quantidade que cada produto é vendido:
+-- Em mï¿½dia, qual ï¿½ a quantidade que cada produto ï¿½ vendido:
 SELECT ProductID, AVG(OrderQty)   
 FROM Sales.SalesOrderDetail
 GROUP BY ProductID
@@ -119,7 +119,7 @@ GROUP BY SALES.SalesOrderDetail.ProductID
 ORDER BY SUM(LineTotal) DESC;
 
 
--- Quantos produtos e qual a quantidade média de produtos temos cadastrados na nossa base de dados?
+-- Quantos produtos e qual a quantidade mï¿½dia de produtos temos cadastrados na nossa base de dados?
 SELECT ProductID, AVG(OrderQty) AS "Avg_Qty"  
 FROM Production.WorkOrder
 GROUP BY ProductID
@@ -142,7 +142,7 @@ HAVING SUM(Sales.SalesOrderDetail.LineTotal) >=162000 and SUM(Sales.SalesOrderDe
 ORDER BY Result DESC;
 
 
--- Províncias com o maior número de cadastros:
+-- Provï¿½ncias com o maior nï¿½mero de cadastros:
 SELECT *
 FROM Person.StateProvince
 
@@ -194,14 +194,13 @@ ORDER BY Person.Person.BusinessEntityID;
 
 -- ListPrice, ProductName, SubcategoryName
 SELECT *
-FROM Production.Product
+FROM Production.Product;
 
 SELECT *
-FROM Production.ProductSubcategory
+FROM Production.ProductSubcategory;
 
 SELECT Production.Product.ListPrice, Production.Product.Name, Production.ProductSubcategory.Name AS "Subcategory_name"
 FROM Production.Product
-INNER JOIN Production.ProductSubcategory ON Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID
-
+INNER JOIN Production.ProductSubcategory ON Production.Product.ProductSubcategoryID = Production.ProductSubcategory.ProductSubcategoryID;
 
 --Business
