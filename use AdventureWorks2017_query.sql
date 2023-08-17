@@ -220,3 +220,12 @@ SELECT * FROM Person.StateProvince;
 SELECT Person.Address.AddressID, Person.Address.City, Person.StateProvince.StateProvinceID, Person.StateProvince.Name
 FROM Person.Address
 INNER JOIN Person.StateProvince ON Person.StateProvince.StateProvinceID = Person.Address.StateProvinceID
+
+-- Quais pessoas possuem cartão de crédito registrado:
+SELECT * FROM Person.Person
+
+SELECT * FROM Sales.PersonCreditCard;
+
+SELECT *
+FROM Person.Person
+LEFT JOIN Sales.PersonCreditCard ON Person.Person.BusinessEntityID = Sales.PersonCreditCard.BusinessEntityID;
