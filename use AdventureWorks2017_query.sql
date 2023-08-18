@@ -249,3 +249,49 @@ UNION
 SELECT Production.Product.ProductID, Production.Product.Name, Production.Product.ProductNumber
 FROM Production.Product
 WHERE Name LIKE '%decal%';
+
+
+---------------------------- SUBQUERY/SUBSELECT
+
+SELECT *
+FROM Production.Product
+WHERE Product.ListPrice > (SELECT AVG(ListPrice) FROM Production.Product);
+
+
+-- Nome dos funcionários 'Design Engineer':
+SELECT Person.Person.FirstName
+FROM Person.Person
+WHERE BusinessEntityID IN (
+    SELECT BusinessEntityID FROM HumanResources.Employee
+    WHERE JobTitle = 'Design Engineer'
+);
+
+-- usando inner join
+SELECT Person.Person.BusinessEntityID,Person.Person.FirstName, HumanResources.Employee.JobTitle
+FROM Person.Person
+JOIN HumanResources.Employee ON Person.Person.BusinessEntityID = HumanResources.Employee.BusinessEntityID
+WHERE HumanResources.Employee.JobTitle = 'Design Engineer';
+
+
+-- Endereços filtrados pelo estado 'Alberta':
+SELECT *
+FROM Person.Address
+WHERE StateProvinceID IN (
+    SELECT Person.StateProvince.StateProvinceID FROM Person.StateProvince
+    WHERE StateProvince.Name = 'Alberta'
+);
+
+
+-- DATEPART
+SELECT *
+FROM Sales.SalesOrderHeader;
+
+SELECT SUM(Sales.SalesOrderHeader.TotalDue) AS "Sum_agg", DATEPART(MONTH, Sales.SalesOrderHeader.OrderDate) AS "Month"
+FROM Sales.SalesOrderHeader
+GROUP BY DATEPART(MONTH, Sales.SalesOrderHeader.OrderDate)
+ORDER BY [Sum_agg] desc;
+
+SELECT SUM(Sales.SalesOrderHeader.TotalDue) AS "Sum_agg", DATEPART(YEAR, Sales.SalesOrderHeader.OrderDate) AS "Year"
+FROM Sales.SalesOrderHeader
+GROUP BY DATEPART(YEAR, Sales.SalesOrderHeader.OrderDate)
+ORDER BY [Sum_agg] desc;
