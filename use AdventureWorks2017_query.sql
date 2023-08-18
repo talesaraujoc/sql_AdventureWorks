@@ -229,3 +229,10 @@ SELECT * FROM Sales.PersonCreditCard;
 SELECT *
 FROM Person.Person
 LEFT JOIN Sales.PersonCreditCard ON Person.Person.BusinessEntityID = Sales.PersonCreditCard.BusinessEntityID;
+-- 19.972 ROWS
+
+SELECT * 
+FROM Person.Person
+INNER JOIN Sales.PersonCreditCard ON Person.Person.BusinessEntityID = Sales.PersonCreditCard.BusinessEntityID;
+-- 19.118 ROWS (retorna só a intersecção)
+
