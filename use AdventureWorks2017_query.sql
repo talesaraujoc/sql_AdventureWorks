@@ -178,6 +178,7 @@ SELECT Sales.SalesOrderDetail.UnitPrice as "Preco_unit"
 FROM Sales.SalesOrderDetail
 
 
+---------------------------- JOIN
 
 -- BusinessEntityId, FirstName, LastName, EmailAddress
 SELECT *
@@ -236,3 +237,15 @@ FROM Person.Person
 INNER JOIN Sales.PersonCreditCard ON Person.Person.BusinessEntityID = Sales.PersonCreditCard.BusinessEntityID;
 -- 19.118 ROWS (retorna só a intersecção)
 
+
+---------------------------- UNION
+
+-- [ProductId], [Name], [ProductNumber] | Names: '%Chain%' & '%Decal%'
+
+SELECT Production.Product.ProductID, Production.Product.Name, Production.Product.ProductNumber
+FROM Production.Product
+WHERE Name LIKE '%chain%' 
+UNION
+SELECT Production.Product.ProductID, Production.Product.Name, Production.Product.ProductNumber
+FROM Production.Product
+WHERE Name LIKE '%decal%';
