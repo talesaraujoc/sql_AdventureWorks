@@ -295,3 +295,5 @@ SELECT SUM(Sales.SalesOrderHeader.TotalDue) AS "Sum_agg", DATEPART(YEAR, Sales.S
 FROM Sales.SalesOrderHeader
 GROUP BY DATEPART(YEAR, Sales.SalesOrderHeader.OrderDate)
 ORDER BY [Sum_agg] desc;
+
+
